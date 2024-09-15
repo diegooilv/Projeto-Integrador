@@ -1,0 +1,88 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Reklame+Script&family=Poppins:wght@300;600&display=swap');
+
+body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+nav {
+    height: 20vh;
+    background-color: #00510f;
+    display: flex;
+    justify-content: space-between;
+}
+#logo {
+    height: 100%;
+}
+#lista-menu {
+    list-style-type: none;
+    display: flex;
+    margin-right: 3vb;
+    
+    align-items: center;
+    min-height: 100px;
+}
+a {
+    text-decoration: none;
+    color: white;
+}
+.lista-menu {
+    justify-content: end;
+    margin-left: 7vb;
+    font-size: 7vb;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+#menu img {
+    transition: transform 0.3s ease;
+}
+#menu img:active {
+    transform: scale(1.1);
+}
+#menu img:hover {
+    cursor: zoom-in;
+}
+.lista-menu a:hover {
+    color: #52c268; 
+    cursor: pointer;
+}
+
+#menuMain {
+    display: flex;
+    justify-content: space-evenly;
+    text-decoration: none;
+    list-style-type: none;
+}
+#menuMain a {
+    margin-top: 1vh;
+    color: black;
+    font-size: 4vb;
+}
+#menuMain a:hover {
+    color: #52c268; 
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+
+    
+}
+
+main h1 {
+    margin: 0 auto;
+    font-size: 8vw;
+    font-family: 'Reklame Script', cursive;
+}
+hr {
+    border: 0; 
+    height: 2px; 
+    background-color: #52c268; 
+    margin: 5px 2px 5px 2px; 
+}
+
+#imgInfo {
+    margin: 3px auto;
+    width: 20%;
+}
