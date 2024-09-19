@@ -1,88 +1,167 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Reklame+Script&family=Poppins:wght@300;600&display=swap');
-
-body {
-    margin: 0;
-    height: 100%;
+html, body {
     width: 100%;
+    max-width: 100dvw;
+    height: 100%;
+    padding: 0;
+    margin: 0;
     overflow-x: hidden;
+    background-color: white;
 }
-nav {
-    height: 20vh;
-    background-color: #00510f;
+header {
+    width: 100%;
+}
+#menu {
+    width: 100%;
     display: flex;
+    padding: 0;
+    height: 120px;
+    background-color: #00510f;
+    align-items: center ;
     justify-content: space-between;
 }
-#logo {
-    height: 100%;
-}
 #lista-menu {
-    list-style-type: none;
+    padding: 0;
     display: flex;
-    margin-right: 3vb;
-    
-    align-items: center;
-    min-height: 100px;
+    list-style: none;
+    gap: 15px;
+    margin-right: 15px;
 }
-a {
+.lista-menu a {
     text-decoration: none;
     color: white;
-}
-.lista-menu {
-    justify-content: end;
-    margin-left: 7vb;
-    font-size: 7vb;
+    font-size: 47px;
     font-family: Georgia, 'Times New Roman', Times, serif;
-}
-#menu img {
-    transition: transform 0.3s ease;
-}
-#menu img:active {
-    transform: scale(1.1);
-}
-#menu img:hover {
-    cursor: zoom-in;
 }
 .lista-menu a:hover {
     color: #52c268; 
     cursor: pointer;
 }
+#logo {
+    height: 100px;
+    width: auto;
+}
+#logo img {
+    transition: transform 0.3s ease;
+}
+#logo:active {
+    transform: scale(1.1);
+}
+
+
+
 
 #menuMain {
+    list-style: none;
+    width: 100%;
+    align-items: center;
+    height: auto;
     display: flex;
-    justify-content: space-evenly;
-    text-decoration: none;
-    list-style-type: none;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+#menu-conteudos {
+    margin: 0 10px 0 10px;
 }
 #menuMain a {
-    margin-top: 1vh;
-    color: black;
-    font-size: 4vb;
+    padding: 5px;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    text-align: center;
+    justify-content: space-between;
+    color: #00510f;
+    font-size: 25px;
+
 }
 #menuMain a:hover {
     color: #52c268; 
+    cursor: pointer;
 }
 
-main {
+#conteudoPrincipal {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
 
+#conteudoPrincipal h1 {
+    font-size: 50px;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
     
 }
-
-main h1 {
-    margin: 0 auto;
-    font-size: 8vw;
-    font-family: 'Reklame Script', cursive;
-}
-hr {
-    border: 0; 
-    height: 2px; 
-    background-color: #52c268; 
-    margin: 5px 2px 5px 2px; 
-}
-
 #imgInfo {
-    margin: 3px auto;
-    width: 20%;
+    height: 200px;
+    width: auto;
 }
+#conteudoPrincipal p {
+    margin: 0 10px 0 10px;
+    font-family: 'Merriweather', serif;
+    text-align: center;
+}
+#p1 {
+    font-size: 20px;
+}
+.conteudo {
+    font-size: 18px;
+}
+#conteudoPrincipal a {
+    text-decoration: none;
+    color:#00510f
+}
+#conteudoPrincipal a:hover {
+    color: #52c268; 
+    cursor: pointer;
+}
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+footer p {
+    font-family: 'Lato', sans-serif;
+    color:#00510f
+}
+@media (max-width: 645px) {
+    #logo {
+        content: url('Logo-IFRS-branco-sem-fundo-Vertical.png');
+    }
+    #menuMain {
+        justify-content: center;
+    }
+
+}
+@media (max-width: 560px){
+    #imgInfo {
+        content: url(logo-TEC-INFO.png);
+        height: 200px;
+        width: auto;
+    }
+ }
+@media (max-width: 460px) {
+    
+    .lista-menu a {
+     font-size: 20px;
+    }
+    #imgInfo {
+        height: 150px;
+        width: auto;
+    }
+    
+    #conteudoPrincipal h1 {
+        font-size: 35px;
+    }
+    
+ }
+ 
+@media (max-width: 340px){
+    #conteudoPrincipal h1 {
+        font-size: 25px;
+    }
+ }
+
