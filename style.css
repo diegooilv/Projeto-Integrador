@@ -90,9 +90,33 @@ header {
 }
 
 #conteudoPrincipal h1 {
+    display: flex;
+    text-align: center;
     font-size: 50px;
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Reklame Script', cursive;
+    
+}
+#conteudoPrincipal h2 {
+    display: flex;
+    text-align: center;
+    margin: 0;
+    font-size: 40px;
+    font-family: 'Reklame Script', cursive;;
+}
+#conteudoPrincipal h3 {
+    display: flex;
+    text-align: center;
+    margin: 0;
+    font-size: 32px;
+    font-family: 'Reklame Script', cursive;;
+}
+#conteudoPrincipal h4 {
+    display: flex;
+    text-align: center;
+    margin: 0;
+    font-size: 24px;
+    font-family: 'Reklame Script', cursive;
     
 }
 #imgInfo {
@@ -136,12 +160,11 @@ footer p {
     }
 
 }
-@media (max-width: 560px){
-    #imgInfo {
-        content: url(logo-TEC-INFO.png);
-        height: 200px;
-        width: auto;
-    }
+
+ @media(max-width: 550px){
+    #conteudoPrincipal h1 {
+        font-size: 35px;
+    } 
  }
 @media (max-width: 460px) {
     
@@ -153,9 +176,6 @@ footer p {
         width: auto;
     }
     
-    #conteudoPrincipal h1 {
-        font-size: 35px;
-    }
     
  }
  
