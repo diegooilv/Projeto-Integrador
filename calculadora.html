@@ -9,6 +9,25 @@
     
     <title>Calculadora</title>
     <link rel="icon" href="img/logo.png" type="image/png">
+    <link rel="canonical" href="https://basesnumericas.pages.dev/calculadora">
+    <meta name="description" content="Ferramenta interativa para conversão de números entre binário, octal, decimal e hexadecimal. Explore seções sobre o projeto e referências, tornando a aprendizagem de sistemas numéricos mais acessível.">
+    <meta name="keywords" content="calculadora, conversor, bases numéricas, decimal, binário, octal, hexadecimal, matemática, informática, educação">
+    <meta name="author" content="IFRS Campus Rolante">
+
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Calculadora - Conversor de Bases Numéricas",
+        "url": "https://basesnumericas.pages.dev/calculadora.html",
+        "description": "Ferramenta de Conversor de Bases Numéricas. Converta números entre binário, octal, decimal e hexadecimal. A página inclui seções sobre o projeto, referências e uma calculadora interativa para facilitar a conversão.",
+        "isPartOf": {
+            "@type": "EducationalOrganization",
+            "name": "Instituto Federal de Ciência e Educação do Rio Grande do Sul - Campus Rolante"
+            }
+        }
+    </script>
+        <meta name="description" content="Ferramenta de Conversor de Bases Numéricas. Converta números entre binário, octal, decimal e hexadecimal. A página inclui seções sobre o projeto, referências e uma calculadora interativa para facilitar a conversão.">
     
     <link rel="stylesheet" href="style/style.css">
     <style>
@@ -89,15 +108,15 @@
             </ul>
         </nav>
     </header>   
-        <section id="menu-conteudos">
-            <ul id="menuMain">
-                <li class="linkMenuConteudos"><a href="decimal.html">Decimal</a></li>
-                <li class="linkMenuConteudos"><a href="binario.html">Binário</a></li>
-                <li class="linkMenuConteudos"><a href="octal.html">Octal</a></li>
-                <li class="linkMenuConteudos"><a href="hexadecimal.html">Hexadecimal</a></li>
-                <li class="linkMenuConteudos"><a href="calculadora.html">Calculadora</a></li>
-            </ul>
-        </section>
+    <section id="menu-conteudos">
+        <ul id="menuMain">
+            <li class="linkMenuConteudos"><a href="/decimal">Decimal</a></li>
+            <li class="linkMenuConteudos"><a href="/binario">Binário</a></li>
+            <li class="linkMenuConteudos"><a href="/octal">Octal</a></li>
+            <li class="linkMenuConteudos"><a href="/hexadecimal">Hexadecimal</a></li>
+            <li class="linkMenuConteudos"><a href="/calculadora">Calculadora</a></li>
+        </ul>
+    </section>
         <hr>
         <main>
             <section id="calculadora">
@@ -127,83 +146,131 @@
         <p>&copy; 2024 IFRS - Projeto Integrador I</p>
     </footer>
     <script>
-        
         function isBinario(valor) {
-            return /^[01]+$/.test(valor);
+            return /^-?[01]+([.,][01]+)?$/.test(valor);  
         }
-
+    
         function isOctal(valor) {
-            return /^[0-7]+$/.test(valor);
+            return /^-?[0-7]+([.,][0-7]+)?$/.test(valor); 
         }
-
+    
         function isDecimal(valor) {
-            return /^[0-9]+$/.test(valor);
+            return /^-?\d+([.,]?\d+)?$/.test(valor);  
         }
-
+    
         function isHexadecimal(valor) {
-            return /^[0-9a-fA-F]+$/.test(valor);
-        }  
+            return /^-?[0-9a-fA-F]+([.,][0-9a-fA-F]+)?$/.test(valor); 
+        }
+    
         function converterParaBase(decimal, baseDestino) {
+            let resultado;
             switch(baseDestino) {
                 case "binario":
-                    return decimal.toString(2);
+                    resultado = (decimal < 0 ? "-" : "") + Math.abs(decimal).toString(2);
+                    break;
                 case "octal":
-                    return decimal.toString(8);
+                    resultado = (decimal < 0 ? "-" : "") + Math.abs(decimal).toString(8);
+                    break;
                 case "decimal":
-                    return decimal.toString(10);
+                    resultado = decimal.toString(10);
+                    break;
                 case "hexadecimal":
-                    return decimal.toString(16);
+                    resultado = (decimal < 0 ? "-" : "") + Math.abs(decimal).toString(16);
+                    break;
                 default:
                     return null;
             }
-        } 
+            return resultado; 
+        }
+    
         function converter() {
-            const numero = document.getElementById("numero").value;
+            let numero = document.getElementById("numero").value;
             const baseOrigem = document.getElementById("baseOrigem").value;
             const baseDestino = document.getElementById("baseDestino").value;
             let decimal;
-
-            
-            if (baseOrigem === baseDestino) {
-                document.getElementById("resultado").value = "Erro: As bases de origem e destino são iguais.";
+    
+            if (!numero) {
+                document.getElementById("resultado").value = "Erro: Nenhum número inserido.";
                 return;
-            }  
+            }
+    
+            numero = numero.replace(',', '.');
+    
+            if ((numero.match(/\./g) || []).length > 1) {
+                document.getElementById("resultado").value = "Erro: Número com múltiplos separadores decimais.";
+                return;
+            }
+    
+            if ((numero.match(/-/g) || []).length > 1) {
+                document.getElementById("resultado").value = "Erro: Número com múltiplos sinais negativos.";
+                return;
+            }
+    
+            if (numero.includes(".") && numero.split(".")[1].length > 10) {
+                document.getElementById("resultado").value = "Erro: Parte fracionária muito longa.";
+                return;
+            }
+    
+            let isNegative = numero.startsWith('-');
+            if (isNegative) {
+                numero = numero.slice(1); // Remove o sinal negativo para facilitar a conversão
+            }
+    
             switch(baseOrigem) {
                 case "binario":
                     if (!isBinario(numero)) {
                         document.getElementById("resultado").value = "Erro: O número inserido não é binário.";
                         return;
                     }
-                    decimal = parseInt(numero, 2);
+                    decimal = parseInt(numero.split(".")[0], 2) || 0; // Parte inteira
+                    decimal += numero.includes(".") ? parseInt(numero.split(".")[1], 2) / Math.pow(2, numero.split(".")[1].length) : 0; // Parte decimal
                     break;
+    
                 case "octal":
                     if (!isOctal(numero)) {
                         document.getElementById("resultado").value = "Erro: O número inserido não é octal.";
                         return;
                     }
-                    decimal = parseInt(numero, 8);
+                    decimal = parseInt(numero.split(".")[0], 8) || 0; // Parte inteira
+                    decimal += numero.includes(".") ? parseInt(numero.split(".")[1], 8) / Math.pow(8, numero.split(".")[1].length) : 0; // Parte decimal
                     break;
+    
                 case "decimal":
                     if (!isDecimal(numero)) {
                         document.getElementById("resultado").value = "Erro: O número inserido não é decimal.";
                         return;
                     }
-                    decimal = parseInt(numero, 10);
+                    decimal = parseFloat(numero); 
                     break;
+    
                 case "hexadecimal":
                     if (!isHexadecimal(numero)) {
                         document.getElementById("resultado").value = "Erro: O número inserido não é hexadecimal.";
                         return;
                     }
-                    decimal = parseInt(numero, 16);
+                    decimal = parseInt(numero.split(".")[0], 16) || 0; 
+                    decimal += numero.includes(".") ? parseInt(numero.split(".")[1], 16) / Math.pow(16, numero.split(".")[1].length) : 0; 
                     break;
+    
                 default:
                     document.getElementById("resultado").value = "Erro: Base de origem inválida.";
                     return;
-            } 
+            }
+    
+            if (isNegative) {
+                decimal = -decimal; 
+            }
+    
+            if (baseOrigem === baseDestino) {
+                document.getElementById("resultado").value = "Erro: As bases de origem e destino são iguais.";
+                return;
+            }
+    
             const resultado = converterParaBase(decimal, baseDestino);
             document.getElementById("resultado").value = resultado;
         }
     </script>
+    
+    
 </body>
 </html>
